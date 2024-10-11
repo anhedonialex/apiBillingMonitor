@@ -31,7 +31,7 @@ if response.status_code == 200:
     money = int(float(result["account"]["total_amount"]))
     chatpush_history.write(f"{money}\n")
     delta = last - money
-    telegram.bot_sendtext(f"Сейчас {money}\nЧас назад {last}")
+    #telegram.bot_sendtext(f"Сейчас {money}\nЧас назад {last}")
     if delta >= secrets.chatpush_delta_threshold:
         telegram.bot_sendtext(f"С последнего запроса на чатпуше ушло {delta} рэ\nВозможно спам")
     else:
