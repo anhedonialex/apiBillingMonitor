@@ -13,7 +13,7 @@ headers = {
 }
 response = requests.get(url, headers=headers, params=querystring)
 
-print(response.json())
+#print(response.json())
 print(response.headers)
 '''
 import json
@@ -26,11 +26,13 @@ if response.status_code == 200:
     limit = int(response.headers["X-RateLimit-Requests-Limit"])
     remaining = int(response.headers["X-RateLimit-Requests-Remaining"])
     percentage = (limit-remaining)*100/limit
-
+    answer_str = f"YouTube Media Downloader истрачен на {percentage:.2f}%\nПотрачено: {limit - remaining:,} запросов\nОсталось: {remaining:,} запросов\nЛимит: {limit:,}"
     if percentage > 60:
-        pass
-        telegram.bot_sendtext(f"Опасно!\nYouTube Media Downloader истрачен на {percentage:.2f}%\nПотрачено: {limit-remaining:,} запросов\nОсталось: {remaining:,} запросов\nЛимит: {limit:,}")
-    else:
-        print(f"Опасно!\nYouTube Media Downloader истрачен на {percentage:.2f}%\nПотрачено: {limit-remaining:,} запросов\nОсталось: {remaining:,} запросов\nЛимит: {limit:,}")
-        telegram.bot_sendtext(f"YouTube Media Downloader истрачен на {percentage:.2f}%\nПотрачено: {limit - remaining:,} запросов\nОсталось: {remaining:,} запросов\nЛимит: {limit:,}")
-        print("yay")
+        answer_str = f"Опасно!\n" + answer_str
+    try:
+        print(response.json())
+    except:
+        answer_str = answer_str + "\nNot responding"
+    telegram.bot_sendtext(answer_str)
+else:
+    telegram.bot_sendtext(__file__ + "\nNot responding")

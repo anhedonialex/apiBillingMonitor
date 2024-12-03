@@ -30,3 +30,6 @@ if response.status_code == 200:
     else:
         telegram.bot_sendtext(f"Instagram RocketAPI истрачен на {percentage:.2f}%\nПотрачено: {requests:,} запросов\nОсталось: {limit - requests:,} запросов\nЛимит: {limit:,}")
         print("yay")
+
+else:
+    telegram.bot_sendtext(__file__ + "\nNot responding")
