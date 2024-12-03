@@ -20,7 +20,7 @@ import json
 with open('data.json', 'w') as f:
     json.dump(response.json(), f)
 '''
-if response.status_code == 201:
+if response.status_code == 200:
     limit = int(response.headers["X-RateLimit-Requests-Limit"])
     remaining = int(response.headers["X-RateLimit-Requests-Remaining"])
     percentage = (limit-remaining)*100/limit
