@@ -32,4 +32,4 @@ if response.status_code == 200:
         print("yay")
 
 else:
-    telegram.bot_sendtext(__file__ + "\nNot responding")
+    telegram.bot_sendtext(__file__ + "\n\nNot responding")

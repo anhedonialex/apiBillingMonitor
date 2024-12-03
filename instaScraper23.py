@@ -31,7 +31,7 @@ if response.status_code == 200:
     try:
         print(response.json())
     except:
-        answer_str = answer_str + "\nNot responding"
+        answer_str = answer_str + "\n\nNot responding"
     telegram.bot_sendtext(answer_str)
 else:
-    telegram.bot_sendtext(__file__ + "\nNot responding")
+    telegram.bot_sendtext(__file__ + "\n\nNot responding")
