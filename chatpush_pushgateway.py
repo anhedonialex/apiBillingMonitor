@@ -1,8 +1,6 @@
 import sys
-
 import requests
 import secrets
-import telegram
 from prometheus_client import CollectorRegistry, Gauge, push_to_gateway
 
 url = 'https://api.chatpush.ru/api/v1/account'
@@ -31,4 +29,3 @@ if response.status_code == 200:
     push_to_gateway(secrets.pushgateway_ip, job='chatpush_balance_job', registry=registry)
 else:
     sys.exit(1)
-

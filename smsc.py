@@ -1,6 +1,4 @@
-
 import requests
-
 import telegram
 
 url = 'https://smsc.ru/sys/balance.php?login='
